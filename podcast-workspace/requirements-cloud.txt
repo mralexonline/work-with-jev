@@ -1,0 +1,2 @@
+# Only needed on the machine that submits jobs to Modal. Pin after you verify the current release.
+modal==1.6.1   # latest on PyPI at time of writing; the cloud functions have NOT been run against it

@@ -1,0 +1,18 @@
+# STATUS: written but not built/run in the build sandbox (no container runtime there). Treat as a starting point.
+# Put an HTTPS reverse proxy in front; do not publish port 8000 to the internet directly.
+services:
+  web:
+    build: .
+    env_file: .env
+    environment: {HOST: 0.0.0.0}
+    ports: ["127.0.0.1:8000:8000"]
+    volumes: ["pw-data:/data", "pw-models:/models"]
+    restart: unless-stopped
+  worker:
+    build: .
+    command: ["python", "-m", "app.worker"]
+    env_file: .env
+    volumes: ["pw-data:/data", "pw-models:/models"]
+    restart: unless-stopped
+    deploy: {resources: {limits: {cpus: "4"}}}
+volumes: {pw-data: {}, pw-models: {}}

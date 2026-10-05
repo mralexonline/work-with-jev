@@ -1,0 +1,31 @@
+# Provider price list used for ESTIMATES and usage tracking. USD.
+# The provider's own dashboard/invoice is the source of truth; this file only drives the
+# in-app gate. Re-check the source URL before trusting a number and edit as needed.
+modal:
+  source: https://modal.com/pricing
+  read_on: 2026-10-05
+  gpu_usd_per_second:          # as printed on the pricing page on read_on
+    T4: 0.000164
+    L4: 0.000222
+    A10: 0.000306
+    L40S: 0.000542
+    A100-40GB: 0.000583
+    A100-80GB: 0.000694
+    H100: 0.001097
+  cpu_usd_per_core_second: 0.0000131
+  memory_usd_per_gib_second: 0.00000222
+  volume_usd_per_gib_month: 0.09   # page also says 1 TiB is included free; verify on your plan
+  egress_usd_per_gib: 0.04
+  free_monthly_credit_usd: 30      # Starter plan, as printed on read_on
+  default_scaledown_window_s: 60   # billed idle tail after each call; configurable 2s..20min
+local:
+  usd_per_second: 0.0              # draft renderer + Kokoro run on the app host CPU
+
+# ASSUMPTIONS, NOT MEASUREMENTS. GPU-seconds needed per second of finished output, per stage.
+# They exist so the app can show a range before the first paid run. After a real run the
+# estimator switches to the measured median from the usage table (see app/budget.py).
+assumed_throughput:
+  tts:      {gpu: L4,   gpu_s_per_output_s: 0.5,  note: "Chatterbox-class TTS, guess"}
+  image:    {gpu: L40S, gpu_s_per_item: 6,        items_per_episode: 12, note: "FLUX.1-schnell stills (hosts x poses + studio views), guess"}
+  lipsync:  {gpu: H100, gpu_s_per_output_s: 30,   note: "14B audio-driven video model; the single biggest cost and the least certain number"}
+uncertainty_high_factor: 3.0      # 'high' estimate = typical x this

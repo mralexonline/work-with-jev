@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Podcast Workspace</title>
+<link rel="icon" href="data:,">
+<link rel="stylesheet" href="vendor/xterm.css">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<section id="login" hidden>
+  <form id="login-form">
+    <h1>Podcast Workspace</h1>
+    <p class="muted">Owner sign-in. The token is in <code>data/owner_token</code> (or your <code>OWNER_TOKEN</code>); run <code>python -m app.cli show-token</code> on the server.</p>
+    <input id="token" type="password" placeholder="Owner token" autocomplete="current-password" required>
+    <button class="primary">Sign in</button>
+    <p id="login-err" class="err"></p>
+  </form>
+</section>
+
+<div id="app" hidden>
+  <header>
+    <strong>Podcast Workspace</strong>
+    <nav id="tabs">
+      <button data-tab="chat" class="active">Chat</button>
+      <button data-tab="projects">Projects</button>
+      <button data-tab="models">Models &amp; research</button>
+      <button data-tab="jobs">Jobs</button>
+      <button data-tab="budget">Budget</button>
+      <button data-tab="terminal">Terminal</button>
+    </nav>
+    <span id="budget-chip" class="chip" title="Month-to-date tracked spend vs your cap"></span>
+    <span id="cloud-chip" class="chip"></span>
+    <button id="logout" class="ghost">Sign out</button>
+  </header>
+
+  <main>
+    <section id="tab-chat" class="tab">
+      <div id="chat-log" aria-live="polite"></div>
+      <form id="chat-form">
+        <textarea id="chat-input" rows="3" placeholder="e.g. Create a 30-second podcast with Matt and Chloe about neighbourhood events, three camera angles, captions, and “Durham & Clarington Community REAL TALK” at the bottom left.   Or: search hugging face lip sync   ·   inspect https://huggingface.co/…"></textarea>
+        <div class="row"><button class="primary">Send</button><span class="muted">Nothing is billed from here. Paid steps always ask for your approval first.</span></div>
+      </form>
+    </section>
+
+    <section id="tab-projects" class="tab" hidden><div id="projects"></div></section>
+
+    <section id="tab-models" class="tab" hidden>
+      <div class="card">
+        <h2>Search &amp; inspect public resources</h2>
+        <form id="search-form" class="row">
+          <select id="search-src"><option value="huggingface">Hugging Face</option><option value="github">GitHub</option></select>
+          <input id="search-q" placeholder="search text, e.g. talking head video" required>
+          <button>Search</button>
+        </form>
+        <form id="inspect-form" class="row">
+          <input id="inspect-url" placeholder="https://github.com/owner/repo  or  https://huggingface.co/owner/model" required>
+          <button>Inspect licence &amp; compatibility</button>
+        </form>
+        <div id="research-out"></div>
+      </div>
+      <div class="card"><h2>Model registry</h2>
+        <p class="muted" id="registry-note"></p>
+        <div class="legend" id="legend"></div>
+        <div id="models-table"></div>
+      </div>
+    </section>
+
+    <section id="tab-jobs" class="tab" hidden><div id="jobs"></div></section>
+
+    <section id="tab-budget" class="tab" hidden>
+      <div class="card" id="budget-card"></div>
+      <div class="card"><h2>Estimate an episode</h2>
+        <form id="est-form" class="row">
+          <label>Minutes <input id="est-min" type="number" min="0.5" step="0.5" value="20" style="width:6em"></label>
+          <label><input id="est-cloud" type="checkbox" checked> cloud GPU visuals</label>
+          <button>Estimate</button>
+        </form>
+        <div id="est-out"></div>
+      </div>
+      <div class="card"><h2>Where idle and storage charges come from</h2><div id="cost-notes"></div></div>
+    </section>
+
+    <section id="tab-terminal" class="tab" hidden>
+      <div class="card"><div id="term-msg" class="muted"></div><div id="term"></div></div>
+    </section>
+  </main>
+</div>
+<script src="vendor/xterm.js"></script>
+<script src="vendor/addon-fit.js"></script>
+<script src="app.js"></script>
+</body>
+</html>

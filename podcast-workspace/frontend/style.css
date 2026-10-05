@@ -1,0 +1,42 @@
+:root{--bg:#0f1318;--panel:#171d25;--panel2:#1e2631;--line:#2a3441;--text:#e6ebf2;--muted:#8d9bb0;--accent:#6aa8ff;--ok:#4cc38a;--warn:#e8b04a;--bad:#ef6b6b}
+@media (prefers-color-scheme:light){:root{--bg:#f4f6f9;--panel:#fff;--panel2:#eef2f7;--line:#d7dee8;--text:#1b2430;--muted:#5d6b80;--accent:#1f6fe0;--ok:#168a55;--warn:#a86d00;--bad:#c63a3a}}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--text);font:14px/1.5 system-ui,-apple-system,Segoe UI,Roboto,sans-serif}
+code{background:var(--panel2);padding:1px 5px;border-radius:4px}
+header{display:flex;align-items:center;gap:14px;padding:10px 16px;border-bottom:1px solid var(--line);background:var(--panel);position:sticky;top:0;z-index:5;flex-wrap:wrap}
+nav{display:flex;gap:4px;flex:1;flex-wrap:wrap}
+nav button{background:none;border:0;color:var(--muted);padding:6px 12px;border-radius:6px;cursor:pointer;font:inherit}
+nav button.active{background:var(--panel2);color:var(--text)}
+main{max-width:1100px;margin:0 auto;padding:16px}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:14px 16px;margin-bottom:14px}
+h2{margin:0 0 8px;font-size:15px} h3{margin:12px 0 6px;font-size:13px;color:var(--muted);text-transform:uppercase;letter-spacing:.04em}
+input,select,textarea,button{font:inherit;color:var(--text);background:var(--panel2);border:1px solid var(--line);border-radius:7px;padding:7px 10px}
+textarea{width:100%;resize:vertical} input{min-width:0}
+.row{display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin:8px 0}
+.row input[type=text],.row input:not([type]){flex:1;min-width:200px}
+button{cursor:pointer} button.primary{background:var(--accent);color:#fff;border-color:transparent}
+button.danger{border-color:var(--bad);color:var(--bad)} button.ghost{background:none} button:disabled{opacity:.5;cursor:not-allowed}
+.muted{color:var(--muted)} .err{color:var(--bad)}
+.chip{padding:2px 9px;border-radius:99px;background:var(--panel2);border:1px solid var(--line);font-size:12px;white-space:nowrap}
+.chip.warn{border-color:var(--warn);color:var(--warn)} .chip.ok{border-color:var(--ok);color:var(--ok)} .chip.bad{border-color:var(--bad);color:var(--bad)}
+.badge{display:inline-block;padding:1px 8px;border-radius:99px;font-size:11px;border:1px solid var(--line);margin-right:4px}
+.b-working{color:var(--ok);border-color:var(--ok)} .b-implemented-untested{color:var(--warn);border-color:var(--warn)}
+.b-placeholder,.b-candidate{color:var(--muted)} .b-blocked,.b-non-commercial{color:var(--bad);border-color:var(--bad)}
+.b-permissive{color:var(--ok);border-color:var(--ok)} .b-open-weight-restricted,.b-unknown{color:var(--warn);border-color:var(--warn)}
+table{width:100%;border-collapse:collapse} th,td{text-align:left;padding:6px 8px;border-bottom:1px solid var(--line);vertical-align:top}
+th{color:var(--muted);font-weight:500;font-size:12px}
+#chat-log{display:flex;flex-direction:column;gap:10px;margin-bottom:12px;min-height:200px}
+.msg{padding:10px 12px;border-radius:10px;max-width:92%;white-space:pre-wrap;word-wrap:break-word}
+.msg.user{background:var(--accent);color:#fff;align-self:flex-end} .msg.assistant{background:var(--panel);border:1px solid var(--line)}
+.progress{height:8px;background:var(--panel2);border-radius:99px;overflow:hidden;margin:6px 0}
+.progress>div{height:100%;background:var(--accent);transition:width .4s}
+.logs{background:#0a0d11;color:#cfd8e6;font:12px/1.45 ui-monospace,Menlo,Consolas,monospace;padding:8px 10px;border-radius:8px;max-height:220px;overflow:auto;white-space:pre-wrap}
+.logs .warn{color:#e8b04a}.logs .error{color:#ef6b6b}
+video{width:100%;max-width:760px;border-radius:8px;background:#000}
+ul.tight{margin:4px 0 4px 18px;padding:0}
+#term{height:420px} .legend{margin-bottom:8px}
+#login{min-height:100vh;display:flex;align-items:center;justify-content:center}
+#login form{background:var(--panel);border:1px solid var(--line);padding:24px;border-radius:12px;width:min(420px,92vw);display:flex;flex-direction:column;gap:10px}
+#login h1{margin:0;font-size:20px}
+[hidden]{display:none!important}
+@media (max-width:640px){main{padding:10px}.msg{max-width:100%}}

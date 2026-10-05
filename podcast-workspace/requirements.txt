@@ -1,0 +1,11 @@
+# Direct dependencies, pinned. requirements.lock holds the full resolved set.
+fastapi==0.142.2
+uvicorn[standard]==0.54.0
+pydantic==2.13.5
+httpx==0.28.1
+pillow==12.3.0
+numpy==2.4.6
+soundfile==0.14.0
+PyYAML==6.0.3
+kokoro-onnx==0.6.1
+websockets==17.2
