@@ -16,6 +16,9 @@
     if (e.target.closest("a")) { nav.classList.remove("open"); btn.setAttribute("aria-expanded", "false"); }
   });
 
+  // Pre-select the service when an offer button is clicked
+  $$("[data-service]").forEach((el) => el.addEventListener("click", () => { $("#c-service").value = el.dataset.service; }));
+
   // Service finder
   const cards = $$(".svc"), chips = $$(".chip-btn"), q = $("#q"), count = $("#count"), empty = $("#empty");
   let cat = "all";

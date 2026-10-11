@@ -157,3 +157,5 @@ details p{color:var(--muted);padding-bottom:6px}
   .two-col{grid-template-columns:1fr}
   .chip{display:none}
 }
+
+.offer{background:linear-gradient(135deg,color-mix(in srgb,var(--brand) 14%,var(--bg)),color-mix(in srgb,var(--accent) 14%,var(--bg)));border-block:1px solid var(--line)}
